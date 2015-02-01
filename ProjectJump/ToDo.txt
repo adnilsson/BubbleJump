@@ -1,0 +1,20 @@
+* DOCUMENTATION
+
+* Replace explicit casts with either static_cast<> or dynamic_cast<>. This exists 
+  in conversion between ListElements and Bubbles/RareSpawns.
+
+* Use nullptr instead of NULL wherever possible.
+
+* Scrap alpha fading from PointsList/FloatingScore, too much trouble for little benefit.
+
+* In BubbleList.cpp::collisionCheck() fix bug. First time the player hits a bubble, ut 
+
+* Make use of d3dxMenuFont in game.h
+
+* Fix so that rareSpawns still render after game-over
+
+* Implement high-score
+
+* Implement a start menu (as an object seperate from Game).
+
+* Virtual function traverseList in List.h: implement a virtual print() function for list elements.

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DX9 - Win32">
+      <UniqueIdentifier>{fec77207-782c-412b-9eac-8e3f2912e339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BigInt">
+      <UniqueIdentifier>{fa19ca76-d4ca-415f-8b97-2d6c6d8fb1b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BigInt">
+      <UniqueIdentifier>{4395c333-6c77-4a7d-8730-15d1d9a04626}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppWnd.h">
+      <Filter>Header Files\DX9 - Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="preproceccors.h">
+      <Filter>Header Files\DX9 - Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\DX9 - Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="WndCls.h">
+      <Filter>Header Files\DX9 - Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Velocity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PointsList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingScore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RareSpawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RareSpawnList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="testIcon.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AppWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WndCls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Velocity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PointsList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingScore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RareSpawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RareSpawnList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BigInteger.cc">
+      <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="BigIntegerAlgorithms.cc">
+      <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="BigIntegerUtils.cc">
+      <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="BigUnsigned.cc">
+      <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="BigUnsignedInABase.cc">
+      <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BigInteger.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="BigIntegerAlgorithms.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="BigIntegerLibrary.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="BigIntegerUtils.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="BigUnsigned.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="BigUnsignedInABase.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+    <None Include="NumberlikeArray.hh">
+      <Filter>Header Files\BigInt</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ToDo.txt" />
+  </ItemGroup>
+</Project>
