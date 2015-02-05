@@ -7,7 +7,7 @@ LPCSTR FloatingScore::scoreDoubled = "x2!";
 
 FloatingScore::FloatingScore(int argX=0,int argY=0,int argPointValue=0): ListElement()
 {
-	alpha = 255; //set full visibility
+	alpha = 255;   //set full visibility
 	pos.x =argX;
 	pos.y =argY;
 	pointValue = argPointValue; //if this is INT_MAX, a rareSpawn has been hit.
@@ -40,7 +40,8 @@ void FloatingScore::displayPoint(LPD3DXFONT d3dxFont){
 	if(pointValue == INT_MAX){
 
 		Menus::displayText(d3dxFont, scoreDoubled, textbox, 
-		leftCornerX, leftCornerY, rightCornerX, rightCornerY);
+		leftCornerX, leftCornerY, rightCornerX, rightCornerY,
+		alpha);
 		return;
 	}
 
@@ -51,7 +52,7 @@ void FloatingScore::displayPoint(LPD3DXFONT d3dxFont){
 	LPCSTR str = (LPCSTR) &score;
 
 	Menus::displayText(d3dxFont, str, textbox, 
-		leftCornerX, leftCornerY, rightCornerX, rightCornerY);
+		leftCornerX, leftCornerY, rightCornerX, rightCornerY, alpha);
 	
 	
 }

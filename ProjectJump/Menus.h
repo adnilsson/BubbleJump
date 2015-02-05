@@ -20,7 +20,7 @@ public:
 	void game_over(game_state state);
 	void paused(game_state state);
 	static void displayText(LPD3DXFONT, LPCSTR, RECT, 
-		int, int, int, int);
+		int, int, int, int, int = 255);
 	
 	
 

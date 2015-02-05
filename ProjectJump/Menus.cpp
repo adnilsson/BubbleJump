@@ -5,28 +5,28 @@
 Menus::Menus(LPDIRECT3DDEVICE9 d3d)
 {
 	D3DXCreateFont(d3d,
-				   FONT_HEIGHT, 0,	// height, width (0 = default value)
-				   FW_BOLD,			//boldness (weight) of text
-				   1,
-				   FALSE,				//no italics
-				   DEFAULT_CHARSET,
-				   OUT_DEFAULT_PRECIS,
-				   DEFAULT_QUALITY,
-				   DEFAULT_PITCH || FF_SWISS, //Spacing, fontFamily
-				   L"Arial",			//fontFace name
-				   &headline			
-				   );
-
-	D3DXCreateFont(d3d,
-		16, 0,	// height, width (0 = default value)
-		FW_MEDIUM,			//boldness (weight) of text
+		FONT_HEIGHT, 0,	          // height, width (0 = default value)
+		FW_BOLD,			      //boldness (weight) of text
 		1,
-		FALSE,				//no italics
+		FALSE,				      //no italics
 		DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS,
 		DEFAULT_QUALITY,
 		DEFAULT_PITCH || FF_SWISS, //Spacing, fontFamily
-		L"Arial",			//fontFace name
+		L"Arial",			       //fontFace name
+		&headline
+		);
+
+	D3DXCreateFont(d3d,
+		16, 0,	                   // height, width (0 = default value)
+		FW_MEDIUM,			       //boldness (weight) of text
+		1,
+		FALSE,				       //no italics
+		DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH || FF_SWISS, //Spacing, fontFamily
+		L"Arial",			       //fontFace name
 		&text
 		);
 }
@@ -74,8 +74,9 @@ void Menus::paused(game_state state){
 
 //Takes a font object, the string to print and the box with coordinates (which is 
 //the area where the string will be printed) and draws the text. 
-void Menus::displayText(LPD3DXFONT d3dxFont, LPCSTR str, RECT textBox, 
-						int upperX, int upperY, int lowerX, int lowerY){
+void Menus::displayText(LPD3DXFONT d3dxFont, LPCSTR str, RECT textBox,
+						int upperX, int upperY, int lowerX, int lowerY,
+						int alpha){
 	if(!SetRect(&textBox, upperX, upperY, lowerX, lowerY)){
 		MessageBox(NULL,
 			      (LPCWSTR)L"failed to create textbox in fuction displayText",
@@ -91,7 +92,7 @@ void Menus::displayText(LPD3DXFONT d3dxFont, LPCSTR str, RECT textBox,
 		strlen(str),
 		&textBox,
 		DT_LEFT | DT_TOP,
-		D3DCOLOR_ARGB(255, 255, 255, 255)) == NULL){
+		D3DCOLOR_ARGB(alpha, 255, 255, 255)) == NULL){
 			
 		MessageBox(NULL,
 			(LPCWSTR)L"DrawTextA failed to display text in Menus.cpp",

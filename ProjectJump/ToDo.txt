@@ -3,15 +3,13 @@
 * Replace explicit casts with either static_cast<> or dynamic_cast<>. This exists 
   in conversion between ListElements and Bubbles/RareSpawns.
 
+* Cleanup warnings, mostly implicit float to int conversions.
+
 * Use nullptr instead of NULL wherever possible.
 
-* Scrap alpha fading from PointsList/FloatingScore, too much trouble for little benefit.
-
-* In BubbleList.cpp::collisionCheck() fix bug. First time the player hits a bubble, ut 
+* (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out
 
 * Make use of d3dxMenuFont in game.h
-
-* Fix so that rareSpawns still render after game-over
 
 * Implement high-score
 
