@@ -15,19 +15,24 @@ void PointsList::traverseList(LPD3DXFONT d3dxFont, game_state state){
 
 
 	//The first element will fade first, so check if head needs to be removed.
-	if( getHead() != nullptr && 
-		((FloatingScore*) getHead())->getAlpha() - FADE_FACTOR < 0){
-		
-		removeElement(getHead());
-	}
+	
 
 	FloatingScore *temp = (FloatingScore*) getHead();
 
 	while(temp != nullptr){
-			
-		temp->displayPoint(d3dxFont); 
+
+		if (((FloatingScore*)temp)->getAlpha() - FADE_FACTOR < 0){
+
+			FloatingScore *tmp = (FloatingScore*)temp->getNext();
+			removeElement(temp);
+			temp = tmp;
+			continue;
+		}
+
+	    temp->displayPoint(d3dxFont);
 		if(state == GAME_RUNNING) temp->fade();
-		temp = (FloatingScore*) temp->getNext();
+
+		temp = (FloatingScore*) temp->getNext(); 
 	}
 }
 

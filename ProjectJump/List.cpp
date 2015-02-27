@@ -37,7 +37,7 @@ void List::removeElement(ListElement *e){
 		return;
 	}
 	
-	if(head == tail ){ //One bubble left in list. (Though not possible in game)
+	if(head == tail ){ //One bubble left in list.
 
 		delete head; 
 

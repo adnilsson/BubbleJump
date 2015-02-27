@@ -53,10 +53,6 @@ BubbleList::~BubbleList(void)
 
 /* 
 
-***** CONSIDER REDOING IT SO THAT COORDINATE IS AN ARGUMENT PASSED 
-***** FROM THE GAME OBJECT. This will allow us to use a single random
-***** engine for both bubbles and rare-spawns.
-
 Uses a normal distribution to choose the coordinate for the new bubble
 This will cause bubbles to tend to the center of the screen.
 
@@ -65,7 +61,7 @@ This will cause bubbles to tend to the center of the screen.
 void BubbleList::spawnOneBubble(LPDIRECT3DDEVICE9 d3d, unsigned int level){
 	int upperBound = WINDOW_WIDTH - Bubble::getBaseRadius();
 	int lowerBound = Bubble::getBaseRadius();
-	int randomX;
+	FLOAT randomX;
 
 	std::random_device rd;
 	std::mt19937 mt(rd());
@@ -74,7 +70,7 @@ void BubbleList::spawnOneBubble(LPDIRECT3DDEVICE9 d3d, unsigned int level){
 
 	//Generate random coordinates between bubble_radius and ½*(WINDOW_WIDTH)
 	do{
-		randomX =  static_cast<int>(nd(mt));
+		randomX =  static_cast<FLOAT>(nd(mt));
 	}
 	while(randomX < lowerBound || randomX > upperBound);
 

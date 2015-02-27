@@ -5,7 +5,7 @@
 
 LPCSTR FloatingScore::scoreDoubled = "x2!";
 
-FloatingScore::FloatingScore(int argX=0,int argY=0,int argPointValue=0): ListElement()
+FloatingScore::FloatingScore(FLOAT argX = 0, FLOAT argY = 0, int argPointValue = 0) : ListElement()
 {
 	alpha = 255;   //set full visibility
 	pos.x =argX;
@@ -26,8 +26,8 @@ void FloatingScore::displayPoint(LPD3DXFONT d3dxFont){
 	int rightCornerX, rightCornerY;
 
 	//determine the position of the textbox (to the right, relative the player)
-	leftCornerX = pos.x + POINT_OFFSET;
-	leftCornerY = pos.y - POINT_OFFSET*2;
+	leftCornerX = static_cast<int>(pos.x + POINT_OFFSET);
+	leftCornerY = static_cast<int>(pos.y - POINT_OFFSET * 2);
 	rightCornerX = leftCornerX + POINT_OFFSET*7;
 	rightCornerY = leftCornerY + POINT_OFFSET*2;
 

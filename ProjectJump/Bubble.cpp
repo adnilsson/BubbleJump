@@ -9,9 +9,10 @@ int  Bubble::baseRadius = BUBBLE_INIT_RADIUS;
 Bubble::Bubble(LPDIRECT3DDEVICE9 d3d, FLOAT posX, int lvl): 
 	offset(BUBBLE_INIT_RADIUS), Sprite(d3d, BUBBLE_TEXTURE), ListElement()
 { 
+	//Set initial position.
 	radius = baseRadius;
 	x = posX;
-	y = -radius;
+	y = static_cast<FLOAT>(-radius);
 	
 	setPosition();
 

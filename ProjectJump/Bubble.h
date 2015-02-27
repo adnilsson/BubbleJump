@@ -40,6 +40,6 @@ private:
 	int radius;
 	RECT spritePart;
 	static unsigned int pointValue; //points given by a bubble, initially 10
-	static int	baseRadius; //radius assigned to new bubbles, initially 16
+	static int	baseRadius; //radius in pixels assigned to new bubbles, initially 16
 };
 

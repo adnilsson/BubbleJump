@@ -7,15 +7,15 @@
 #define POINT_OFFSET 10
 
 struct position{
-	int x;
-	int y;
+	FLOAT x;
+	FLOAT y;
 };
 
 class FloatingScore :
 	public ListElement
 {
 public:
-	FloatingScore(int, int,int);
+	FloatingScore(FLOAT, FLOAT, int);
 	virtual ~FloatingScore(void);
 
 	void displayPoint(LPD3DXFONT);

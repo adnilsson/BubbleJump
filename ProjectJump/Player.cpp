@@ -87,15 +87,15 @@ void Player::accelerate(){
 	Vector *yV = velocity->getVector();
 	Vector *xV = xVelocity->getVector();
 
-	yV->size += Y_ACCEL;
+	yV->size += static_cast<FLOAT>(Y_ACCEL);
 
 
 	//Safe to accelerate without changing direction
 	if(xV->size > 0.02){
-		xV->size -= X_ACCEL;
+		xV->size -= static_cast<FLOAT>(X_ACCEL);
 	}
 	else if(xV->size < -0.02f){
-		xV->size += X_ACCEL;
+		xV->size += static_cast<FLOAT>(X_ACCEL);
 	}
 	else xV->size = 0.0f; //set to zero if speed is close to zero
 

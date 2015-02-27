@@ -3,7 +3,7 @@
 //
 // Class desc: * Contains objects that a game consists of, i.e. the player, bubbles, text
 //               and rareSpawns.
-//             * Handles game logic and rendering, as well as movement of the player, 
+//             * Handles game logic and rendering as well as movement of the player, 
 //               bubbles and rareSpawns
 //
 //

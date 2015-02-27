@@ -3,8 +3,6 @@
 * Replace explicit casts with either static_cast<> or dynamic_cast<>. This exists 
   in conversion between ListElements and Bubbles/RareSpawns.
 
-* Cleanup warnings, mostly implicit float to int conversions.
-
 * Use nullptr instead of NULL wherever possible.
 
 * (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out
@@ -15,4 +13,7 @@
 
 * Implement a start menu (as an object seperate from Game).
 
-* Virtual function traverseList in List.h: implement a virtual print() function for list elements.
+(*) Virtual function traverseList in List.h: implement a virtual print() function for list elements.
+    Generic, but not elegant because every call to traverseList would need to include all parameters
+	for every version. i.e. I need to pass a font, sprite and game_state even though they're not always
+	needed.

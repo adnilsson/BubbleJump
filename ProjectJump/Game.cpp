@@ -172,8 +172,9 @@ void Game::moveObjects(LPDIRECT3DDEVICE9 d3ddev){
 		bubbles->moveBubbles(player->getVelocity());
 		floatingPoints->moveText(player->getVelocity());
 		
+		int spacing = static_cast<int>(bubbleSpacing);
 		//enter if a new bubble is to be spawned.
-		if(static_cast<int>(bubbleSpacing) >= spawnInterval){ 
+		if (spacing > 0 && static_cast<unsigned int>(spacing) >= spawnInterval){
 			
 			std::random_device rd;
 			std::mt19937 mt(rd());
