@@ -4,7 +4,7 @@
 #include <d3dx9.h>
 
 #define FADE_FACTOR 3
-#define POINT_OFFSET 10
+#define POINT_OFFSET 25
 
 struct position{
 	FLOAT x;

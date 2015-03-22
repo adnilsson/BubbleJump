@@ -22,25 +22,23 @@ void FloatingScore::displayPoint(LPD3DXFONT d3dxFont){
 	static RECT textbox;
 	char score[40] = {'+'};
 	char strScore[20];
-	int leftCornerX, leftCornerY;
-	int rightCornerX, rightCornerY;
+	int centerX, centerY;
 
 	//determine the position of the textbox (to the right, relative the player)
-	leftCornerX = static_cast<int>(pos.x + POINT_OFFSET);
-	leftCornerY = static_cast<int>(pos.y - POINT_OFFSET * 2);
-	rightCornerX = leftCornerX + POINT_OFFSET*7;
-	rightCornerY = leftCornerY + POINT_OFFSET*2;
+	centerX = static_cast<int>(pos.x + POINT_OFFSET);
+	centerY = static_cast<int>(pos.y - POINT_OFFSET);
+	int width = 50;
 
 	//move the textbox to the left if the texbox is positioned outside of the window
-	if(rightCornerX > WINDOW_WIDTH){
-		leftCornerX-= 7*POINT_OFFSET;
-		rightCornerX -= 7*POINT_OFFSET;
+	if (centerX + width / 2  > WINDOW_WIDTH){
+		centerX -= 3 * POINT_OFFSET;
 	}
 
+	//A rareSpawn has been hit
 	if(pointValue == INT_MAX){
 
 		Menus::displayText(d3dxFont, scoreDoubled, textbox, 
-		leftCornerX, leftCornerY, rightCornerX, rightCornerY,
+			centerX, centerY, width, DT_CENTER,
 		alpha);
 		return;
 	}
@@ -51,8 +49,8 @@ void FloatingScore::displayPoint(LPD3DXFONT d3dxFont){
 
 	LPCSTR str = (LPCSTR) &score;
 
-	Menus::displayText(d3dxFont, str, textbox, 
-		leftCornerX, leftCornerY, rightCornerX, rightCornerY, alpha);
+	Menus::displayText(d3dxFont, str, textbox,
+		centerX, centerY, width, DT_CENTER, alpha);
 	
 	
 }

@@ -113,6 +113,9 @@ std::string Player::getFormatedScore(){
 	return formated;
 }
 
+std::string Player::scoreToString() const{
+	return bigIntegerToString(score);
+}
 
 void Player::setCollision(bool collision){
 	hasCollided = collision;

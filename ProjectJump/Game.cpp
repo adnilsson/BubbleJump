@@ -17,7 +17,7 @@ Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 	bubbleSpacing = last->getY();
 
 	D3DXCreateFont(d3ddev,
-				   20, 0,	            //height, width (0 = default value)
+				   22, 0,	            //height, width (0 = default value)
 				   FW_DEMIBOLD,	        //boldness (weight) of text
 				   1,
 				   FALSE,				//no italics
@@ -150,13 +150,12 @@ void Game::displayScore(LPD3DXFONT d3dxFont){
 	std::string score = "Score: ";  
 	score.append(player->getFormatedScore());
 	
-
 	LPCSTR text = (LPCSTR) score.c_str();
 
 	//show score in top left corner. 
 	menus->displayText(d3dxFont, text, textbox,
-		0, 0, 
-		WINDOW_WIDTH, SCOREBOX_HEIGHT);
+		WINDOW_WIDTH/2,  SCOREBOX_HEIGHT/2, 
+		WINDOW_WIDTH);
 
 }
 

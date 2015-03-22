@@ -39,6 +39,7 @@ public:
 	bool getCollision() const;
 	
 	std::string getFormatedScore();
+	std::string scoreToString() const;
 
 	void incScore();
 	void doubleScore();

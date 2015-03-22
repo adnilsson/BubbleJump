@@ -39,44 +39,79 @@ Menus::~Menus(void)
 }
 
 void Menus::game_over(game_state state){
-	int upperX = WINDOW_WIDTH/2 -100, upperY = WINDOW_HEIGHT/2 -90;
-	int lowerX = WINDOW_WIDTH, lowerY = WINDOW_HEIGHT/2;
+	int centerX = WINDOW_WIDTH / 2;
+	int centerY = 0.5 * WINDOW_HEIGHT / 2;
+	int width = 200;
 
 	if(state == GAME_OVER){
 		
 		displayText(headline, "Game Over!", box, 
-			upperX, upperY,  //Upper left corner
-			lowerX, lowerY); //Lower right corner
+			centerX, centerY,   //Upper left corner
+			width, DT_CENTER);  //Lower right corner
 
 		displayText(text, "(press space to restart)", box, 
-			upperX + 30, upperY + 50, //Upper left corner
-			lowerX, lowerY + 50);     //Lower right corner
+			centerX, centerY + 30, //Upper left corner
+			width, DT_CENTER);     //Lower right corner
 	}
 
 	
 }
 
 void Menus::paused(game_state state){
-	int upperX = WINDOW_WIDTH/2 -60, upperY = WINDOW_HEIGHT/2 -90;
-	int lowerX = WINDOW_WIDTH, lowerY = WINDOW_HEIGHT/2;
+	int centerX = WINDOW_WIDTH / 2;
+	int centerY = 0.5 * WINDOW_HEIGHT / 2;
+	int width = 200;
 
 	if(state == GAME_PAUSED){
 		
-		displayText(headline, "Paused", box, 
-			upperX, upperY,   //Upper left corner
-			lowerX, lowerY);  //Lower right corner
+		displayText(headline, "Paused \n h", box, 
+			centerX, centerY,   //Upper left corner
+			width, DT_CENTER);  //Lower right corner
 
 		displayText(text, "(press space to resume)", box,
-			upperX - 10, upperY + 50, //Upper left corner
-			lowerX, lowerY + 50);     //Lower right corner
+			centerX, centerY + 30, //Upper left corner
+			width, DT_CENTER);     //Lower right corner
+			
 	}
 }
 
-//Takes a font object, the string to print and the box with coordinates (which is 
-//the area where the string will be printed) and draws the text. 
+ 
+/*
+--------------- PARAMS ---------------
+
+d3dxFont:		The font object to draw.
+str:			Text to be displayed.
+textBox:		Container for the font object. limits the area where text will 
+				be displayed.
+centerX/Y:		Coordinates of the center of the textBox.
+width:			Desired width of the textbox.
+textAlignment:  Where to place text in the textBox. Defaults to DT_LEFT.
+alpha:			Sets the text's opacity. Defaults to 255 (fully opac).
+				Used for fading score increments from bubbles. 
+*/
 void Menus::displayText(LPD3DXFONT d3dxFont, LPCSTR str, RECT textBox,
-						int upperX, int upperY, int lowerX, int lowerY,
-						int alpha){
+						int centerX, int centerY, int width, 
+						int textAlignment, int alpha){
+
+	TEXTMETRIC textMetrics;
+	int upperX, upperY;
+	int lowerX, lowerY;
+
+	if (!d3dxFont->GetTextMetricsW(&textMetrics)){
+		MessageBox(NULL,
+			(LPCWSTR)L"Failed to retrieve text metrics in fuction displayText",
+			(LPCWSTR)L"Error",
+			MB_ICONERROR | MB_OK);
+		return;
+	}
+
+	upperX = centerX - width / 2;
+	upperY = centerY - textMetrics.tmHeight / 2;
+	
+	lowerX = centerX + width / 2;
+	lowerY = centerY + textMetrics.tmHeight / 2;
+
+
 	if(!SetRect(&textBox, upperX, upperY, lowerX, lowerY)){
 		MessageBox(NULL,
 			      (LPCWSTR)L"failed to create textbox in fuction displayText",
@@ -85,13 +120,14 @@ void Menus::displayText(LPD3DXFONT d3dxFont, LPCSTR str, RECT textBox,
 		return;
 	}
 
+
 	assert(d3dxFont != NULL);
 
 	if (d3dxFont->DrawTextA(NULL,
 		str,
 		strlen(str),
 		&textBox,
-		DT_LEFT | DT_TOP,
+		textAlignment | DT_TOP,
 		D3DCOLOR_ARGB(alpha, 255, 255, 255)) == NULL){
 			
 		MessageBox(NULL,
