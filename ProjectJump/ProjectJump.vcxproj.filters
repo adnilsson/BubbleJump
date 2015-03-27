@@ -13,28 +13,40 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\DX9 - Win32">
-      <UniqueIdentifier>{fec77207-782c-412b-9eac-8e3f2912e339}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\BigInt">
       <UniqueIdentifier>{fa19ca76-d4ca-415f-8b97-2d6c6d8fb1b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\BigInt">
       <UniqueIdentifier>{4395c333-6c77-4a7d-8730-15d1d9a04626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Lists">
+      <UniqueIdentifier>{1687fb47-0d92-4369-aca3-761202ae524b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Lists\Elems">
+      <UniqueIdentifier>{67046bf8-d7df-4cd5-b569-9c68c0a8614b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lists">
+      <UniqueIdentifier>{b3cfa3f3-86e1-4d46-89fa-bdd70b6718ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lists\Elems">
+      <UniqueIdentifier>{4e91bdf2-7f4a-4d1d-8eb4-6afc9cae4810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Defs">
+      <UniqueIdentifier>{e3362a67-20af-43fe-b6fb-db64e2fb0183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Win32">
+      <UniqueIdentifier>{fec77207-782c-412b-9eac-8e3f2912e339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win32">
+      <UniqueIdentifier>{7bce47ea-59c2-4a2f-9669-0dfc388664f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWnd.h">
-      <Filter>Header Files\DX9 - Win32</Filter>
-    </ClInclude>
-    <ClInclude Include="preproceccors.h">
-      <Filter>Header Files\DX9 - Win32</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files\DX9 - Win32</Filter>
+      <Filter>Header Files\Win32</Filter>
     </ClInclude>
     <ClInclude Include="WndCls.h">
-      <Filter>Header Files\DX9 - Win32</Filter>
+      <Filter>Header Files\Win32</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
@@ -45,37 +57,46 @@
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bubble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BubbleList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Velocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ListElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PointsList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FloatingScore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Menus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RareSpawn.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="PointsList.h">
+      <Filter>Header Files\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleList.h">
+      <Filter>Header Files\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files\Lists</Filter>
     </ClInclude>
     <ClInclude Include="RareSpawnList.h">
+      <Filter>Header Files\Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Header Files\Lists\Elems</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingScore.h">
+      <Filter>Header Files\Lists\Elems</Filter>
+    </ClInclude>
+    <ClInclude Include="ListElement.h">
+      <Filter>Header Files\Lists\Elems</Filter>
+    </ClInclude>
+    <ClInclude Include="RareSpawn.h">
+      <Filter>Header Files\Lists\Elems</Filter>
+    </ClInclude>
+    <ClInclude Include="preproceccors.h">
+      <Filter>Header Files\Defs</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\Defs</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,13 +106,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AppWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WndCls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -100,37 +115,13 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bubble.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Velocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="List.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ListElement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PointsList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FloatingScore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Menus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RareSpawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RareSpawnList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BigInteger.cc">
@@ -147,6 +138,39 @@
     </ClCompile>
     <ClCompile Include="BigUnsignedInABase.cc">
       <Filter>Source Files\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleList.cpp">
+      <Filter>Source Files\Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files\Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="PointsList.cpp">
+      <Filter>Source Files\Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="RareSpawnList.cpp">
+      <Filter>Source Files\Lists</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>Source Files\Lists\Elems</Filter>
+    </ClCompile>
+    <ClCompile Include="ListElement.cpp">
+      <Filter>Source Files\Lists\Elems</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingScore.cpp">
+      <Filter>Source Files\Lists\Elems</Filter>
+    </ClCompile>
+    <ClCompile Include="RareSpawn.cpp">
+      <Filter>Source Files\Lists\Elems</Filter>
+    </ClCompile>
+    <ClCompile Include="AppWnd.cpp">
+      <Filter>Source Files\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="WndCls.cpp">
+      <Filter>Source Files\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,5 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ToDo.txt" />
+    <Text Include="highscores.txt" />
   </ItemGroup>
 </Project>

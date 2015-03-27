@@ -35,6 +35,7 @@ enum game_state{
 	MAIN_MENU, 
 	GAME_RUNNING, 
 	GAME_PAUSED,
+	PRE_GAME_OVER,
 	GAME_OVER
 };
 

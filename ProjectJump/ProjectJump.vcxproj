@@ -89,6 +89,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="ListElement.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PointsList.h" />
     <ClInclude Include="preproceccors.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="ListElement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menus.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PointsList.cpp" />
     <ClCompile Include="RareSpawn.cpp" />
@@ -135,6 +137,7 @@
     <None Include="NumberlikeArray.hh" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="highscores.txt" />
     <Text Include="ToDo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

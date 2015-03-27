@@ -16,18 +16,6 @@ Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 	currentState = GAME_RUNNING;
 	bubbleSpacing = last->getY();
 
-	D3DXCreateFont(d3ddev,
-				   22, 0,	            //height, width (0 = default value)
-				   FW_DEMIBOLD,	        //boldness (weight) of text
-				   1,
-				   FALSE,				//no italics
-				   DEFAULT_CHARSET,
-				   OUT_DEFAULT_PRECIS,
-				   DEFAULT_QUALITY,
-				   DEFAULT_PITCH || FF_SWISS, //Spacing, fontFamily
-				   L"Arial",			      //fontFace name
-				   &d3dxMenuFont			
-				   );
 }
 
 
@@ -38,10 +26,7 @@ Game::~Game(void)
 	delete rareSpawns;
 	delete menus;
 	delete floatingPoints;
-	if(d3dxMenuFont != NULL){
-		d3dxMenuFont->Release(); 
-		d3dxMenuFont = NULL;
-	}
+	
 }
 
 //draws content according to current game state.
@@ -82,7 +67,7 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 
 			render_game(d3dSprite, d3dxFont); //Draw objects on screen.
 			moveObjects(d3ddev); // Move game obejcts
-			if(isGameOver()) changeState(GAME_OVER);
+			if(isGameOver()) changeState(PRE_GAME_OVER);
 
 			break;
 
@@ -98,12 +83,19 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 			menus->paused(currentState);
 			break;
 
+		case(PRE_GAME_OVER) : // runs only once (directly upon game over)
+			menus->pre_game_over(player->getScore());
+			changeState(GAME_OVER);
+
+			/*no break, since we still want to render the GAME_OVER screen when 
+			  PRE_GAME_OVER has finished*/
+
 		case(GAME_OVER):
 			bubbles->traverseList(d3dSprite);		
 			rareSpawns->traverseList(d3dSprite);	
 			d3dSprite->End();
 			displayScore(d3dxFont);
-			menus->game_over(currentState);
+			menus->game_over();
 			break;
 		default:
 			OutputDebugString(L"Game.cpp: Unknown game state in render_frame()");
@@ -121,13 +113,13 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 void Game::render_game(LPD3DXSPRITE d3dSprite, LPD3DXFONT d3dxFont){
 
 		
-	bubbles->traverseList(d3dSprite); //Draw all bubbles
+	bubbles->traverseList(d3dSprite);
 	rareSpawns->traverseList(d3dSprite);
-	player->drawSprite(d3dSprite); //Draw the player
+	player->drawSprite(d3dSprite); 
 		
 	d3dSprite->End(); //Finish drawing sprites
 	
-	//Draw text
+	//Draw texts
 	floatingPoints->traverseList(d3dxFont);
 	displayScore(d3dxFont);
 }

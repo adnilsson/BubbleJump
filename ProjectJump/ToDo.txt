@@ -1,15 +1,14 @@
 * DOCUMENTATION
 
-* Replace explicit casts with either static_cast<> or dynamic_cast<>. This exists 
+* Replace explicit casts with either static_cast<> or dynamic_cast<>. Used 
   in conversion between ListElements and Bubbles/RareSpawns.
 
-* Use nullptr instead of NULL wherever possible.
+* (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out.
 
-* (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out
 
-* Make use of d3dxMenuFont in game.h
-
-* Implement high-score
+* Consider saving high scores in lists instead of arrays in Parser class. This would be beneficial
+  since we need to update parts of the array when a new high score has been set. (Is it worth the
+  extra trouble of creating a ListElement that contains only an string/bigInteger ?)
 
 * Implement a start menu (as an object seperate from Game).
 

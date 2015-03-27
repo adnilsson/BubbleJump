@@ -104,6 +104,7 @@ void Player::accelerate(){
 
 //Groups the numerical value of the player's score into triplets
 //i.e. 10000000 will be formated to "10,000,000"
+//TODO: Remove, place as static function in parser instead
 std::string Player::getFormatedScore(){
 	std::string formated = bigIntegerToString(score);
 

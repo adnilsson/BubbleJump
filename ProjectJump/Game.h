@@ -43,8 +43,6 @@ public:
 	unsigned int getLevel() const;
 
 private:
-	LPD3DXFONT d3dxMenuFont; //TODO: currently unsused 
-
 	game_state currentState;
 
 	unsigned int level;
