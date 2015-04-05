@@ -33,6 +33,7 @@ public:
 	RECT getSpritePart() const;
 	static unsigned int getBaseRadius();
 	static int getPointValue();
+	static void resetRadius();
 	
 
 private:

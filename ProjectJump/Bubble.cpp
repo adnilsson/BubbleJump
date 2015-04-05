@@ -49,6 +49,9 @@ void Bubble::decRadius(){
 	}
 }
 
+void Bubble::resetRadius(){
+	baseRadius = BUBBLE_INIT_RADIUS;
+}
 
 void Bubble::place(FLOAT yPos){
 	y = yPos;

@@ -27,6 +27,7 @@ Game::~Game(void)
 	delete menus;
 	delete floatingPoints;
 	
+	Bubble::resetRadius();
 }
 
 //draws content according to current game state.
