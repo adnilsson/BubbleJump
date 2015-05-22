@@ -13,6 +13,8 @@ Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 	Bubble *last = (Bubble *) bubbles->getTail();
 	floatingPoints = new PointsList();
 
+	noRare = false;
+
 	currentState = GAME_RUNNING;
 	bubbleSpacing = last->getY();
 
@@ -75,7 +77,7 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 		case(GAME_PAUSED):
 			bubbles->traverseList(d3dSprite);
 			rareSpawns->traverseList(d3dSprite);
-			player->drawSprite(d3dSprite);
+			player->drawSpritePart(d3dSprite, player->getSpritePart());
 			d3dSprite->End();
 
 			//Text
@@ -116,7 +118,7 @@ void Game::render_game(LPD3DXSPRITE d3dSprite, LPD3DXFONT d3dxFont){
 		
 	bubbles->traverseList(d3dSprite);
 	rareSpawns->traverseList(d3dSprite);
-	player->drawSprite(d3dSprite); 
+	player->drawPlayer(d3dSprite); 
 		
 	d3dSprite->End(); //Finish drawing sprites
 	
@@ -174,12 +176,14 @@ void Game::moveObjects(LPDIRECT3DDEVICE9 d3ddev){
 
 			int random = dist(mt);
 
-			if(random == 66 || random == 6){
+			if((random == 66 || random == 6) && !noRare){
 				rareSpawns->spawn(d3ddev);
+				noRare = true;
 			}
 			else{
 				//Spawn a bubble to appear from top of window.
 				bubbles->spawnOneBubble(d3ddev, level);
+				if (noRare) noRare = false;
 			}
 
 			//reset distance distance since last spawn

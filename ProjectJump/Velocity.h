@@ -9,7 +9,7 @@ struct Vector{
 	Vector(){};
 	Vector(bool dir, FLOAT sSize = -1.0f){direction = dir; size = sSize;};
 
-	bool direction; //Up or down (false/true) Right or Left (true/false)
+	bool direction; //Up or down (false/true), Left or Right (false/true)
 	FLOAT size;
 };
 

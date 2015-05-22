@@ -12,6 +12,11 @@
 
 * Implement a start menu (as an object seperate from Game).
 
+* More roboust error handling. E.g. make it possbile for game to enter an error state which 
+  terminates the program.
+
+* 
+
 (*) Virtual function traverseList in List.h: implement a virtual print() function for list elements.
     Generic, but not elegant because every call to traverseList would need to include all parameters
 	for every version. i.e. I need to pass a font, sprite and game_state even though they're not always

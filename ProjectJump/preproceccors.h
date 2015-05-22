@@ -14,13 +14,16 @@
 #define WINDOW_WIDTH  400
 #define WINDOW_HEIGHT 700
 
-#define PLAYER_RADIUS 8
+#define PLAYER_RADIUS 9
+#define BUBBLE_INIT_RADIUS 16		//you start with the largest bubble
+#define BUBBLE_MIN_RADIUS 5			//the smallest bubbles has a radius of 5px
+#define PLAYER_ANIMATION_CONSTANT 10
 
 //textbox sizes
 #define SCOREBOX_HEIGHT 20
 
 //Texture paths
-#define PLAYER_TEXTURE     L"player.png"
+#define PLAYER_TEXTURE     L"newPlayer.png"
 #define BUBBLE_TEXTURE     L"bubbles.png"
 #define RARE_SPAWN_TEXTURE L"hitlerpus.png"
 

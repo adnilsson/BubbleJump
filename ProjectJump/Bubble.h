@@ -7,8 +7,6 @@
 //Sprite dimensions
 #define BUBBLE_SPRITE_WIDTH 32		//each bubble sprite is 32px wide
 #define BUBBLE_SPRITE_HEIGHT 32	
-#define BUBBLE_INIT_RADIUS 16		//you start with the largest bubble
-#define BUBBLE_MIN_RADIUS 5			//the smallest bubbles has a radius of 5px
 
 //Game-dependent constants
 #define BUBBLE_DECREASE 1			//the radius is decreased by 1px between each bubble sprite.

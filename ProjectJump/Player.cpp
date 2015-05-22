@@ -5,56 +5,118 @@
 
 
 Player::Player(LPDIRECT3DDEVICE9 d3d)
-	: offset(PLAYER_RADIUS*2), radius(PLAYER_RADIUS), Sprite(d3d, PLAYER_TEXTURE){
+	: offset(PLAYER_SPRITE_WIDTH / 2), radius(PLAYER_RADIUS), Sprite(d3d, PLAYER_TEXTURE),
+	sinking(new SpriteRect(96, 128, 0, 32)), swimming(new SpriteRect(0, 32, 0, 32)){
 
 	D3DXVECTOR3 zero(offset, offset, 0.0f);
 	center = zero;
-	
+
 	x = WINDOW_WIDTH / 2;
-	y = WINDOW_HEIGHT -150;
+	y = static_cast<FLOAT>(WINDOW_HEIGHT * 0.7857);  //700 * 0,7857 = 550 
 
 	setPosition();
-	
+
+	if (SetRect(&spritePart, 0, 0, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT) == 0){
+		MessageBox(NULL,
+			(LPCWSTR)L"SetRect failed in player constructor.",
+			(LPCWSTR)L"Error",
+			MB_ICONERROR | MB_OK);
+		return;
+	}
+
 	velocity = new Velocity(1.0f);
 	xVelocity = new Velocity(0.0f, X_TOP_SPEED);
-	atMaxHeight = false; 
+	atMaxHeight = false;
 
 	score = 0;
+	counter = PLAYER_ANIMATION_CONSTANT;
 	hasCollided = false;
-
-
+	animateForward = true;
 }
 
 
-Player::~Player(void) {}
+Player::~Player(void) {
+	if (velocity != nullptr) delete velocity;
+	if (xVelocity != nullptr) delete xVelocity;
+	if (sinking != nullptr) delete sinking;
+	if (swimming != nullptr) delete swimming;
+}
+
+HRESULT Player::drawPlayer(LPD3DXSPRITE sprite){
+	if (!isSinking()){
+		if (counter == 0){
+			adjustSwimFrame();
+			counter += PLAYER_ANIMATION_CONSTANT;
+		}
+		else counter--;
+	}
+
+	if (!setSpriteRect()){
+		MessageBox(NULL,
+			(LPCWSTR)L"SetRect setSpriteRect failed (player.cpp).",
+			(LPCWSTR)L"Error",
+			MB_ICONERROR | MB_OK);
+	}
+	return drawSpritePart(sprite, spritePart);
+}
 
 void Player::checkHeight(){
 
 	Vector *v = velocity->getVector();
 
-	if( v->size < 0 && v->direction
+	if (v->size < 0 && v->direction
 		|| v->size > 0 && !v->direction) velocity->flipVelocity();
-	
+
 
 	//player should be moved
-	if(y <= WINDOW_HEIGHT - MAX_PLAYER_HEIGHT 
+	if (y <= WINDOW_HEIGHT - MAX_PLAYER_HEIGHT
 		&& v->direction){
-		
-			atMaxHeight = false;
+
+		atMaxHeight = false;
 	}
-	 //bubbles should be moved
-	else if(y <= WINDOW_HEIGHT - MAX_PLAYER_HEIGHT
-		&& !v->direction )  {
-		
+	//bubbles should be moved
+	else if (y <= WINDOW_HEIGHT - MAX_PLAYER_HEIGHT
+		&& !v->direction)  {
+
 		atMaxHeight = true;
 	}
 }
 
+
+void Player::adjustSwimFrame(){
+	if (animateForward){
+		swimming->xLeft += PLAYER_SPRITE_WIDTH;
+		swimming->xRight += PLAYER_SPRITE_WIDTH;
+		if ((swimming->xLeft) % (2 * PLAYER_SPRITE_WIDTH) == 0){
+			animateForward = false;
+		}
+		
+	}
+	else{
+		swimming->xLeft -= PLAYER_SPRITE_WIDTH;
+		swimming->xRight -= PLAYER_SPRITE_WIDTH;
+		if (swimming->xLeft == 0){
+			animateForward = true;
+		}
+	}
+}
+
+
+/*Adjusts the spritePart to display the correct frame/part of the 
+sprite animation*/
+BOOL Player::setSpriteRect(){
+	if (isSinking()){
+		return SetRect(&spritePart, sinking->xLeft, sinking->yTop,
+			sinking->xRight, sinking->yBottom);
+	}
+	
+	return SetRect(&spritePart, swimming->xLeft, swimming->yTop,
+			       swimming->xRight, swimming->yBottom);
+}
+
 //return true if the player was moved
 bool Player::moveY(){
-
 	checkHeight();
-
 
 	if(!atMaxHeight){
 		y = y + velocity->getSpeed();
@@ -75,7 +137,7 @@ void Player::moveX(){
 	//check if player is out of bounds
 	if(x + xVelocity->getSpeed() <= radius ||
 		x + xVelocity->getSpeed() >= WINDOW_WIDTH - radius){ 
-			return;
+			return; //do nothing 
 	}
 	
 	x += xVelocity->getSpeed(); //Increase position
@@ -153,7 +215,11 @@ FLOAT Player::getSpeed() const{
 	return velocity->getSpeed();
 }
 
-//TODO: implement so that we can display a BigInt in a FloatingScore
+RECT Player::getSpritePart() const{
+	return spritePart;
+}
+
+
 BigInteger Player::getScore() const{
 	return score; 
 }

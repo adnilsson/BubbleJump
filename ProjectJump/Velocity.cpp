@@ -42,10 +42,13 @@ Vector* Velocity::getVector()const{
 	return velocity;
 }
 
+/*Returns true if going down or right depending on 
+what direction the vector describes.*/
 bool Velocity::getDirection()const{	
 	return velocity->direction;
 }
 
+//Gives the magnitude of the vector.
 FLOAT Velocity::getSpeed()const{
 	return velocity->size;
 }

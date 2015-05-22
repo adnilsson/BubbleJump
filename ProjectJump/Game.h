@@ -51,6 +51,7 @@ private:
 	const int spawnIncrement;
 	unsigned int spawnInterval;
 	double bubbleSpacing;				//Distance since last spawn.
+	bool noRare;						//Used to prevent consecutive spawns.
 
 	void displayScore(LPD3DXFONT); 		//Display the player's curren score.
 	void moveObjects(LPDIRECT3DDEVICE9);
