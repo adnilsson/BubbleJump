@@ -1,23 +1,21 @@
 * DOCUMENTATION
 
-* Replace explicit casts with either static_cast<> or dynamic_cast<>. Used 
-  in conversion between ListElements and Bubbles/RareSpawns.
-
 * (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out.
 
 
 * Consider saving high scores in lists instead of arrays in Parser class. This would be beneficial
-  since we need to update parts of the array when a new high score has been set. (Is it worth the
-  extra trouble of creating a ListElement that contains only an string/bigInteger ?)
+  since we need to update parts of the array when a new high score has been set (Is it worth the
+  extra trouble of creating a ListElement that contains only an string/bigInteger? Since the arrays
+  consist only of five elements, and array updates only occur at startup/game over,
+  there should not be any noticeable difference in performance.)
 
 * Implement a start menu (as an object seperate from Game).
 
 * More roboust error handling. E.g. make it possbile for game to enter an error state which 
   terminates the program.
 
-* 
 
 (*) Virtual function traverseList in List.h: implement a virtual print() function for list elements.
     Generic, but not elegant because every call to traverseList would need to include all parameters
 	for every version. i.e. I need to pass a font, sprite and game_state even though they're not always
-	needed.
+	needed. (Is there some kind of template structure for this?)

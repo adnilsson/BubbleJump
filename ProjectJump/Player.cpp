@@ -29,7 +29,7 @@ Player::Player(LPDIRECT3DDEVICE9 d3d)
 	atMaxHeight = false;
 
 	score = 0;
-	counter = PLAYER_ANIMATION_CONSTANT;
+	prevAnimFrame = std::chrono::steady_clock::now();
 	hasCollided = false;
 	animateForward = true;
 }
@@ -44,11 +44,10 @@ Player::~Player(void) {
 
 HRESULT Player::drawPlayer(LPD3DXSPRITE sprite){
 	if (!isSinking()){
-		if (counter == 0){
+		if (std::chrono::steady_clock::now() - prevAnimFrame > frameDelay){
 			adjustSwimFrame();
-			counter += PLAYER_ANIMATION_CONSTANT;
+			prevAnimFrame = std::chrono::steady_clock::now();
 		}
-		else counter--;
 	}
 
 	if (!setSpriteRect()){
@@ -57,6 +56,7 @@ HRESULT Player::drawPlayer(LPD3DXSPRITE sprite){
 			(LPCWSTR)L"Error",
 			MB_ICONERROR | MB_OK);
 	}
+
 	return drawSpritePart(sprite, spritePart);
 }
 
@@ -193,7 +193,7 @@ void Player::doubleScore(){
 }
 
 
-bool Player::MaxHeight() const{
+bool Player::maxHeight() const{
 	return atMaxHeight;
 }
 

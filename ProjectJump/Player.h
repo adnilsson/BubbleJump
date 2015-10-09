@@ -1,5 +1,6 @@
 // Third-party libraries: BigInt (http://mattmccutchen.net/bigint/).
 
+#include <chrono>
 #include <d3d9.h>
 #include "debug.h"
 #include "Sprite.h"
@@ -11,13 +12,15 @@
 #define Y_ACCEL 0.07 
 #define X_ACCEL 0.05 
 
-//Player stops moving, and bubbles shold move instead, if max height is reached
+//y- point at which the player stops moving, and bubbles start to move instead
 #define MAX_PLAYER_HEIGHT 250
 
 #define PLAYER_SPRITE_WIDTH 32
 #define PLAYER_SPRITE_HEIGHT 32
 
 const FLOAT X_TOP_SPEED = 2.75f;
+
+const std::chrono::milliseconds frameDelay(105);
 
 class Player : public Sprite
 {
@@ -26,7 +29,7 @@ public:
 
 	virtual ~Player(void);
 
-	bool moveY(); //give true if player moved
+	bool moveY(); //true if player moved in the latest frame
 	void moveX( );
 	void accelerate();
 	void resetX(bool); //Set x-movement to (+-) X_TOP_SPEED
@@ -41,7 +44,7 @@ public:
 	BigInteger getScore() const;
 	RECT getSpritePart() const;
 	bool getCollision() const;
-	bool MaxHeight() const; //change to lower case
+	bool maxHeight() const; 
 	
 	std::string getFormatedScore();
 	std::string scoreToString() const;
@@ -56,10 +59,12 @@ private:
 	float offset;		//rect offset to display the correct sprite	
 	
 	RECT spritePart;
-	const SpriteRect *const sinking;	//constant pointer, constant data.
+	const SpriteRect *const sinking;	//constant pointer, constant data (static sprite).
 	SpriteRect *const swimming;		    //constant pointer, non-constant data.
 
-	int counter; 
+	// Used with PLAYER_ANIMATION_CONSTANT to decide when to move sprite frame.
+	//TODO: I want this to be time-dependent.
+	std::chrono::steady_clock::time_point prevAnimFrame;
 
 	Velocity *velocity;
 	Velocity *xVelocity;

@@ -32,7 +32,7 @@ Game::~Game(void)
 	Bubble::resetRadius();
 }
 
-//draws content according to current game state.
+//draws content according to current game state. Called from  the main message loop.
 void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DXFONT d3dxFont){
 	
 	d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0,0,0), 1.0f, 0); //clear back buffer	
@@ -115,7 +115,7 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 
 void Game::render_game(LPD3DXSPRITE d3dSprite, LPD3DXFONT d3dxFont){
 
-		
+	//Sprites	
 	bubbles->traverseList(d3dSprite);
 	rareSpawns->traverseList(d3dSprite);
 	player->drawPlayer(d3dSprite); 
