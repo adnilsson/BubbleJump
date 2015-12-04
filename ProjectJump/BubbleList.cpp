@@ -20,7 +20,8 @@ BubbleList::BubbleList(LPDIRECT3DDEVICE9 d3d, int interval) : List()
 {
 	Bubble* temp;
 
-	int n = (WINDOW_HEIGHT -(BUBBLE_INIT_RADIUS*4 + interval)) / (interval); //How many bubbles will fit the screen?
+	//How many bubbles will fit the screen?
+	int n = (WINDOW_HEIGHT -(BUBBLE_INIT_RADIUS*4 + interval)) / (interval); 
 
 	for (int i = 0; i < n; i++){
 		

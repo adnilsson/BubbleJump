@@ -4,16 +4,14 @@
 
 Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 	spawnInterval(4*BUBBLE_INIT_RADIUS), maximumSpawnInterval(130), 
-	spawnIncrement(BUBBLE_INIT_RADIUS/2)
+	spawnIncrement(BUBBLE_INIT_RADIUS / 2), monster()
 {
 	player = new Player(d3ddev);
 	bubbles = new BubbleList(d3ddev, spawnInterval);
-	rareSpawns = new RareSpawnList(d3ddev);
 	menus = new Menus(d3ddev);
 	Bubble *last = (Bubble *) bubbles->getTail();
 	floatingPoints = new PointsList();
-
-	noRare = false;
+	monster = nullptr;
 
 	currentState = GAME_RUNNING;
 	bubbleSpacing = last->getY();
@@ -23,12 +21,10 @@ Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 
 Game::~Game(void)
 {
-	delete player;
-	delete bubbles;
-	delete rareSpawns;
-	delete menus;
+
 	delete floatingPoints;
-	
+	delete menus;
+	delete bubbles;
 	Bubble::resetRadius();
 }
 
@@ -50,7 +46,6 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 		case(GAME_RUNNING):
 			//player->setCollision(bubbles->collisionCheck(player)); //check if there is any collision 
 
-			//if there was a collision: Make it possible to display the points attained.
 			if(bubbles->collisionCheck(player)){
 				player->incScore();
 				//Create a new floating point and add to the list of FloatingScores
@@ -60,7 +55,9 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 				floatingPoints->addElement(point);
 				checkLevelUp();
 			}
-			else if(rareSpawns->collisionCheck(player)){
+			else if(monster != nullptr && monster->collisionCheck(player)){
+
+				monster.release();
 
 				FloatingScore *point = new FloatingScore(player->getX()+PLAYER_RADIUS, 
 					player->getY(), INT_MAX);
@@ -76,7 +73,7 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 
 		case(GAME_PAUSED):
 			bubbles->traverseList(d3dSprite);
-			rareSpawns->traverseList(d3dSprite);
+			drawMonster(d3dSprite);
 			player->drawSpritePart(d3dSprite, player->getSpritePart());
 			d3dSprite->End();
 
@@ -95,7 +92,7 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 
 		case(GAME_OVER):
 			bubbles->traverseList(d3dSprite);		
-			rareSpawns->traverseList(d3dSprite);	
+			drawMonster(d3dSprite);		//Could return !D3D_OK
 			d3dSprite->End();
 			displayScore(d3dxFont);
 			menus->game_over();
@@ -115,9 +112,10 @@ void Game::render_frame(LPDIRECT3DDEVICE9 d3ddev, LPD3DXSPRITE d3dSprite, LPD3DX
 
 void Game::render_game(LPD3DXSPRITE d3dSprite, LPD3DXFONT d3dxFont){
 
-	//Sprites	
+	/*Sprites (monster and player might not return D3D_OK, 
+	not sure how to handle this)*/
 	bubbles->traverseList(d3dSprite);
-	rareSpawns->traverseList(d3dSprite);
+	drawMonster(d3dSprite);
 	player->drawPlayer(d3dSprite); 
 		
 	d3dSprite->End(); //Finish drawing sprites
@@ -158,35 +156,38 @@ void Game::displayScore(LPD3DXFONT d3dxFont){
 
 void Game::moveObjects(LPDIRECT3DDEVICE9 d3ddev){
 	
-		if(!player->moveY()){ //Move the player
+	if (!player->moveY()){ //Move the player
 
-		bubbleSpacing += abs(player->getSpeed()); //save change in height.
-		
-		rareSpawns->moveRaresY(player->getVelocity());
 		bubbles->moveBubbles(player->getVelocity());
 		floatingPoints->moveText(player->getVelocity());
-		
+
+		if (monster != nullptr){
+			//remove the monster if it was missed, otherwise move it. 
+			monster->getY() > WINDOW_HEIGHT ? monster.release() :
+				monster->moveY(player->getVelocity());
+		}
+
+		bubbleSpacing += abs(player->getSpeed()); //save change in height.
 		int spacing = static_cast<int>(bubbleSpacing);
-		//enter if a new bubble is to be spawned.
+
+		//enter if a new bubble should be spawned.
 		if (spacing > 0 && static_cast<unsigned int>(spacing) >= spawnInterval){
-			
+
 			std::random_device rd;
 			std::mt19937 mt(rd());
-			std::uniform_int_distribution<int> dist(0,100);
+			std::uniform_int_distribution<int> dist(0, 100);
 
 			int random = dist(mt);
 
-			if((random == 66 || random == 6) && !noRare){
-				rareSpawns->spawn(d3ddev);
-				noRare = true;
+			if ((random == 66 || random == 6) && (monster == nullptr)){
+				spawnMonster(d3ddev);
 			}
 			else{
-				//Spawn a bubble to appear from top of window.
+				//Spawn a bubble to appear from the top of the window.
 				bubbles->spawnOneBubble(d3ddev, level);
-				if (noRare) noRare = false;
 			}
 
-			//reset distance distance since last spawn
+			//reset distance distance since last spawned bubble
 			bubbleSpacing = 0.0f;
 		}
 	}
@@ -204,7 +205,7 @@ void Game::moveObjects(LPDIRECT3DDEVICE9 d3ddev){
 			player->resetX(true);
 		}
 	
-	rareSpawns->moveRaresX();
+	if (monster != nullptr) monster->moveX();
 	player->moveX();
 	player->accelerate();
 }
@@ -225,6 +226,16 @@ void Game::checkLevelUp(){
 			spawnInterval += 8;
 	}
 
+}
+
+// Spawn somewhere on the horizontal axis.
+void Game::spawnMonster (LPDIRECT3DDEVICE9 d3d){
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_int_distribution<int> dist(0, (WINDOW_WIDTH - RARE_SPRITE_WIDTH));
+
+	int randomX = dist(mt);
+	monster.reset(new RareSpawn(d3d, static_cast<FLOAT>(randomX)));
 }
 
 void Game::changeState(game_state newState){

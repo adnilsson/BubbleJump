@@ -70,7 +70,7 @@ void RareSpawnList::moveRaresX(){
 	}
 }
 
-
+// Spawn somewhere on the horizontal axis.
 void RareSpawnList::spawn(LPDIRECT3DDEVICE9 d3d){
 	std::random_device rd;
 	std::mt19937 mt(rd());

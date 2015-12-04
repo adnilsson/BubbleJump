@@ -20,6 +20,7 @@
 
 const FLOAT X_TOP_SPEED = 2.75f;
 
+//Wait time between sprite frames.
 const std::chrono::milliseconds frameDelay(105);
 
 class Player : public Sprite

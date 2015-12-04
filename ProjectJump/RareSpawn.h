@@ -1,8 +1,8 @@
 #pragma once
-#include "sprite.h"
 #include "ListElement.h"
+#include "Player.h"
+#include "sprite.h"
 #include "Velocity.h"
-
 
 #define RARE_SPRITE_WIDTH 64		
 #define RARE_SPRITE_HEIGHT 32	
@@ -20,6 +20,8 @@ public:
 	void moveY(Velocity *V);
 	void moveX();
 
+	bool collisionCheck(Player *player);
+	void spawn(LPDIRECT3DDEVICE9 d3d);
 private:
 	Velocity *xVelocity;
 };

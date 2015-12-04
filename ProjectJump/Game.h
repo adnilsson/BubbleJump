@@ -14,7 +14,8 @@
 #include "Player.h"
 #include "BubbleList.h"
 #include "PointsList.h"
-#include "RareSpawnList.h"
+#include "RareSpawn.h"
+#include <memory>
 #include "Menus.h"
 
 
@@ -28,7 +29,6 @@ public:
 	Player *player;
 	BubbleList *bubbles;
 	PointsList *floatingPoints;
-	RareSpawnList *rareSpawns;
 	Menus *menus; 
 
 
@@ -44,6 +44,7 @@ public:
 
 private:
 	game_state currentState;
+	std::unique_ptr <RareSpawn> monster;
 
 	unsigned int level;
 	const unsigned int levelStep;		//number of points required to advance to the next level.
@@ -51,15 +52,19 @@ private:
 	const int spawnIncrement;
 	unsigned int spawnInterval;
 	double bubbleSpacing;				//Distance since last spawn.
-	bool noRare;						//Used to prevent consecutive spawns.
 
 	void displayScore(LPD3DXFONT); 		//Display the player's curren score.
 	void moveObjects(LPDIRECT3DDEVICE9);
 	void checkLevelUp();				//move to the next level if needed.
 	bool isGameOver() const;
 
+	void spawnMonster(LPDIRECT3DDEVICE9);
+	void drawMonster(LPD3DXSPRITE d3d){ 
+		if (monster != nullptr) monster->drawSprite(d3d);};
+
 	void render_game(LPD3DXSPRITE, LPD3DXFONT);
 	void render_menu(LPDIRECT3DDEVICE9, LPD3DXSPRITE);
 	void render_pause(LPDIRECT3DDEVICE9, LPD3DXSPRITE);
+
 };
 
