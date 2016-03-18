@@ -3,6 +3,7 @@
 #include <chrono>
 #include <d3d9.h>
 #include "debug.h"
+#include "Hitbox.h"
 #include "Sprite.h"
 #include "Velocity.h"
 #include "BigIntegerLibrary.hh" //third-party
@@ -23,7 +24,7 @@ const FLOAT X_TOP_SPEED = 2.75f;
 //Wait time between sprite frames.
 const std::chrono::milliseconds frameDelay(105);
 
-class Player : public Sprite
+class Player: public Sprite
 {
 public:
 	Player(LPDIRECT3DDEVICE9 d3d);
@@ -57,18 +58,20 @@ public:
 
 private:
 	const FLOAT radius;
-	float offset;		//rect offset to display the correct sprite	
+	float rectOffset;		//rect offset to display the correct sprite	
 	
-	RECT spritePart;
+	RECT spritePart;					//The part that is drawn/rendered
 	const SpriteRect *const sinking;	//constant pointer, constant data (static sprite).
 	SpriteRect *const swimming;		    //constant pointer, non-constant data.
 
 	// Used with PLAYER_ANIMATION_CONSTANT to decide when to move sprite frame.
-	//TODO: I want this to be time-dependent.
 	std::chrono::steady_clock::time_point prevAnimFrame;
 
+	// Players move in 2-dimensions
 	Velocity *velocity;
 	Velocity *xVelocity;
+
+	Hitbox playerHitbox;
 
 	BigInteger  score;
 

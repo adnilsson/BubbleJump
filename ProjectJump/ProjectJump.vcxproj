@@ -86,6 +86,7 @@
     <ClInclude Include="debug.h" />
     <ClInclude Include="FloatingScore.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Hitbox.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="ListElement.h" />
     <ClInclude Include="Menus.h" />
@@ -94,8 +95,8 @@
     <ClInclude Include="PointsList.h" />
     <ClInclude Include="preproceccors.h" />
     <ClInclude Include="RareSpawn.h" />
-    <ClInclude Include="RareSpawnList.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Velocity.h" />
     <ClInclude Include="WndCls.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="BubbleList.cpp" />
     <ClCompile Include="FloatingScore.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="ListElement.cpp" />
     <ClCompile Include="main.cpp" />
@@ -122,7 +124,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PointsList.cpp" />
     <ClCompile Include="RareSpawn.cpp" />
-    <ClCompile Include="RareSpawnList.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Velocity.cpp" />
     <ClCompile Include="WndCls.cpp" />

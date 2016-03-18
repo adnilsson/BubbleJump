@@ -5,10 +5,14 @@
 
 
 Player::Player(LPDIRECT3DDEVICE9 d3d)
-	: offset(PLAYER_SPRITE_WIDTH / 2), radius(PLAYER_RADIUS), Sprite(d3d, PLAYER_TEXTURE),
-	sinking(new SpriteRect(96, 128, 0, 32)), swimming(new SpriteRect(0, 32, 0, 32)){
+	: rectOffset(PLAYER_SPRITE_WIDTH / 2), 
+		radius(PLAYER_RADIUS), 
+		Sprite(d3d, PLAYER_TEXTURE),
+		sinking(new SpriteRect(96, 128, 0, 32)), 
+		swimming(new SpriteRect(0, 32, 0, 32)),
+		playerHitbox(Hitbox(new customShapes::Circle(PLAYER_RADIUS, WINDOW_WIDTH / 2, WINDOW_HEIGHT * 0.7857), false)){
 
-	D3DXVECTOR3 zero(offset, offset, 0.0f);
+	D3DXVECTOR3 zero(rectOffset, rectOffset, 0.0f);
 	center = zero;
 
 	x = WINDOW_WIDTH / 2;
@@ -120,6 +124,7 @@ bool Player::moveY(){
 
 	if(!atMaxHeight){
 		y = y + velocity->getSpeed();
+		playerHitbox.setY(y);
 		setPosition();
 		return true;
 	}
@@ -141,6 +146,7 @@ void Player::moveX(){
 	}
 	
 	x += xVelocity->getSpeed(); //Increase position
+	playerHitbox.setX(x);
 	setPosition();
 }
 
@@ -200,7 +206,7 @@ bool Player::maxHeight() const{
 
 //Getters
 FLOAT Player::getOffset() const{
-	return offset;
+	return rectOffset;
 }
 
 FLOAT Player::getRadius() const{

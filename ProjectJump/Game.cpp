@@ -21,7 +21,6 @@ Game::Game(LPDIRECT3DDEVICE9 d3ddev):levelStep(250), level(0),
 
 Game::~Game(void)
 {
-
 	delete floatingPoints;
 	delete menus;
 	delete bubbles;

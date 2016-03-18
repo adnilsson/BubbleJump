@@ -17,6 +17,8 @@ List::~List(void)
 
 //New elements are placed last.
 void List::addElement(ListElement *e){
+
+	if (e == nullptr) return; 
 	
 	//Case of empty list
 	if(head == nullptr && tail == nullptr){
@@ -37,7 +39,7 @@ void List::removeElement(ListElement *e){
 		return;
 	}
 	
-	if(head == tail ){ //One bubble left in list.
+	if(head == tail ){ //One element left in list.
 
 		delete head; 
 

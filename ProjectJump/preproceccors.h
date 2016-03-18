@@ -17,7 +17,7 @@
 #define PLAYER_RADIUS 9
 #define BUBBLE_INIT_RADIUS 16		//you start with the largest bubble
 #define BUBBLE_MIN_RADIUS 5			//the smallest bubbles has a radius of 5px
-#define PLAYER_ANIMATION_CONSTANT 10
+#define PLAYER_ANIMATION_CONSTANT 10 //Animation speed constant
 
 //textbox sizes
 #define SCOREBOX_HEIGHT 20

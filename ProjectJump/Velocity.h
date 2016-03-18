@@ -5,6 +5,7 @@
 
 #pragma once
 
+// A vector that has a size and binary direction.
 struct Vector{
 	Vector(){};
 	Vector(bool dir, FLOAT sSize = -1.0f){direction = dir; size = sSize;};

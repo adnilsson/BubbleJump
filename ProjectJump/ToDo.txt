@@ -2,17 +2,25 @@
 
 * (In BubbleList.cpp::collisionCheck() fix bug) Fixed but don't know why it works. Sort it out.
 
+* Integrate new RareSpawns
+	- Make Hitbox and Killbox structs/classes (TODO: make sprite coorinates into shared
+	  pointers that are shared with hitboxes. Hiboxes need coordinates for distance calculation)  
+	- Replace drawMonster in Game.cpp with a function drawRareSpawn. The new drawing function
+	  is too large to have inlined in game.h. 
 
-* Consider saving high scores in lists instead of arrays in Parser class. This would be beneficial
-  since we need to update parts of the array when a new high score has been set (Is it worth the
-  extra trouble of creating a ListElement that contains only an string/bigInteger? Since the arrays
+* Consider saving high scores in lists instead of arrays in Parser class. Parts of the array need 
+  to be updated whenever a new high score has been set ( although the arrays
   consist only of five elements, and array updates only occur at startup/game over,
-  there should not be any noticeable difference in performance.)
+  there should not be any noticeable difference in performance).
 
-* Implement a start menu (as an object seperate from Game).
+* Implement a start menu (as an object seperate from Game). 
+
+* Make a semi transparent background on game over. The high scores chan be hard to read if 
+  a bubble is direcly behind the text.
 
 * More roboust error handling. E.g. make it possbile for game to enter an error state which 
-  terminates the program.
+  terminates the program. 
+
 
 (*) Virtual function traverseList in List.h: implement a virtual print() function for list elements.
     Generic, but not elegant because every call to traverseList would need to include all parameters

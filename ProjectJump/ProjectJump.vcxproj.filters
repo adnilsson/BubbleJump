@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Win32">
       <UniqueIdentifier>{7bce47ea-59c2-4a2f-9669-0dfc388664f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Boxes">
+      <UniqueIdentifier>{fb2c7a11-b073-4cf1-ace5-28eb37e64984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boxes">
+      <UniqueIdentifier>{a0163402-57cb-4df8-b75f-f7e0c93ef303}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWnd.h">
@@ -75,9 +81,6 @@
     <ClInclude Include="List.h">
       <Filter>Header Files\Lists</Filter>
     </ClInclude>
-    <ClInclude Include="RareSpawnList.h">
-      <Filter>Header Files\Lists</Filter>
-    </ClInclude>
     <ClInclude Include="Bubble.h">
       <Filter>Header Files\Lists\Elems</Filter>
     </ClInclude>
@@ -97,6 +100,12 @@
       <Filter>Header Files\Defs</Filter>
     </ClInclude>
     <ClInclude Include="Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -148,9 +157,6 @@
     <ClCompile Include="PointsList.cpp">
       <Filter>Source Files\Lists</Filter>
     </ClCompile>
-    <ClCompile Include="RareSpawnList.cpp">
-      <Filter>Source Files\Lists</Filter>
-    </ClCompile>
     <ClCompile Include="Bubble.cpp">
       <Filter>Source Files\Lists\Elems</Filter>
     </ClCompile>
@@ -170,6 +176,12 @@
       <Filter>Source Files\Win32</Filter>
     </ClCompile>
     <ClCompile Include="Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
