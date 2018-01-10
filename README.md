@@ -1,4 +1,11 @@
 # BubbleJump
+
+*[Deprecation notice]*
+
+This repository will not undergo any further improvements or changes as I believe that I have learned what I can from this project. DirectX9 is severly outdated and any further time invenstment will give limited returns in terms of learning and game development experience. 
+
+*[End of notice]*
+
 A climber/jumping game (think Doodle Jump).
 
 The game is hevily inspired by an old game for mobile phones (from the time when mobiles had buttons) with the same title. Arcade inspired, so the player goal is just to get as high a score as possible. Originally my final high school project that didn't finish in time. Recently rediscovered it and decided it was worth finishing. It's now my spare time project. 
